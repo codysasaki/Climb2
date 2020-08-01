@@ -41,6 +41,36 @@ For the final sprint:
 
 ### Installation Steps
 
+**Database**
+
+1. Navigate to the resources tab under your Heroku application and look for Heroku Postgres in the Add-ons search bar. Provision Postgres for your application with the Hobby Dev plan. <br/>
+
+2. You can access the database from terminal with the following command (make sure you are logged into Heroku):
+
+<pre>heroku pg:psql -a your-application-name</pre>
+
+3. We have provided our schema in database.sql. Copy-paste this inside the Heroku Postgres terminal.<br/>
+
+4. Once this is complete, copy over the config.example.js file into a new file named config.js and alter the fields to match the database configurations (username, host, database, port, password) on Heroku. These can be found by clicking on the Heroku Postgres option under Add-ons, then selecting Database Credentials under the Settings tab. Without this step, the Node.js server will not know what database to query.
+
+**Backend**
+
+Testing the web application on localhost:
+1. Navigate to the <code>backend</code> subdirectory:
+<pre>cd backend</pre>
+2. Start the web server (this installs necessary dependencies as well):
+<pre>npm start</pre>
+
+Deploying the web application on Heroku:
+1. Configure the Heroku deployment:
+<pre>
+cd ..
+heroku login
+heroku git:remote -a your-application-name
+</pre>
+2. Push the web application to Heroku:
+<pre>git subtree push --prefix backend heroku master</pre>
+
 **Frontend**
 
 Testing the web application on localhost:
@@ -56,42 +86,10 @@ Deploying the web application on Heroku:
 <pre>
 cd ..
 heroku login
-heroku git:remote -a [my-app-name]
+heroku git:remote -a your-application-name
 </pre>
 2. Push the web application to Heroku:
 <pre>git subtree push --prefix frontend heroku master</pre>
-
-**Backend**
-
-Testing the web application on localhost:
-1. Navigate to the <code>backend</code> subdirectory:
-<pre>cd backend</pre>
-2. Start the web server (this installs necessary dependencies as well):
-<pre>npm start</pre>
-
-Deploying the web application on Heroku:
-1. Configure the Heroku deployment:
-<pre>
-cd ..
-heroku login
-heroku git:remote -a [my-app-name]
-</pre>
-2. Push the web application to Heroku:
-<pre>git subtree push --prefix backend heroku master</pre>
-
-**Database setup**
-
-Once you have set up the backend with Heroku, you can add database functionality.
-
-1. Navigate to the resources tab under your Heroku application and look for Heroku Postgres in the Add-ons search bar. Provision Postgres for your application with the Hobby Dev plan. <br/>
-
-2. You can access the database from terminal with the following command (make sure you are logged into Heroku):
-
-<pre>heroku pg:psql -a your-application-name</pre>
-
-3. We have provided our schema in database.sql (copy-paste this inside the Heroku Postgres terminal). <br/>
-
-4. Once this is complete, you must copy over the config.example.js file into a new file named config.js and alter the fields to match the database configurations (username, host, password, etc) on Heroku. These can be found by clicking on the Heroku Postgres option under Add-ons, then selecting Database Credentials under the Settings tab. Without this step, the Node.js server will not know what database to query.
 
 ### Testing
 
